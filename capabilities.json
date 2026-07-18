@@ -1,0 +1,26 @@
+{
+  "capabilities": {},
+  "agents": {
+    "kimi": {
+      "invocation": ["kimi", "-p", "{prompt}", "--output-format", "text"],
+      "probe": []
+    },
+    "codex": {
+      "invocation": ["codex", "exec", "--skip-git-repo-check", "-s", "read-only", "-c", "approval_policy=never"],
+      "prompt_via": "stdin",
+      "probe": []
+    },
+    "agy": {
+      "invocation": ["agy", "-p", "{prompt}", "--sandbox", "--print-timeout", "30m"],
+      "probe": []
+    },
+    "cursor-agent": {
+      "invocation": ["cursor-agent", "-p", "--mode", "ask", "--output-format", "text", "--trust", "--model", "auto", "{prompt}"],
+      "probe": []
+    },
+    "grok": {
+      "invocation": ["grok", "-p", "{prompt}", "--output-format", "plain", "--permission-mode", "plan"],
+      "probe": []
+    }
+  }
+}

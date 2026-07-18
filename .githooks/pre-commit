@@ -1,0 +1,20 @@
+#!/bin/sh
+# Dispatch pre-commit gate. Enable per clone with:
+#   git config core.hooksPath .githooks
+set -e
+
+cd "$(git rev-parse --show-toplevel)"
+
+node --check scripts/_agents-core.mjs
+node --check scripts/_detect-external-agents.mjs
+node --check scripts/_probe-capabilities.mjs
+node --check scripts/_matrix.mjs
+node -e "JSON.parse(require('fs').readFileSync('capabilities.json','utf8'))"
+node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8'))"
+node --test --test-reporter=dot scripts/*.test.mjs
+
+if command -v claude >/dev/null 2>&1; then
+  claude plugin validate .
+else
+  echo "pre-commit: SKIPPED — claude not installed; official manifest validation not run"
+fi

@@ -1,0 +1,9 @@
+{
+  "name": "dispatch",
+  "description": "Delegate tasks to external agent CLIs through one router and one brief contract — probed facts before use, write isolation through worktrees, a multi-model audit panel, and concurrent image generation with failure memory.",
+  "version": "0.1.0",
+  "author": {
+    "name": "WeZZard",
+    "email": "me@wezzard.com"
+  }
+}
